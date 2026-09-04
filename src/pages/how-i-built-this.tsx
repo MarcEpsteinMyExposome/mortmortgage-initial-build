@@ -140,8 +140,8 @@ export default function HowIBuiltThis() {
               <a href="https://brightmeld.com" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 font-medium underline">
                 BrightMeld
               </a>
-              &apos;s contract-governed pipeline. Its first commit came nineteen days after this build began —
-              both git histories are public. That pipeline later rebuilt this same application from a single
+              &apos;s contract-governed pipeline. Its first commit came nineteen days after this build began.
+              That pipeline later rebuilt this same application from a single
               RFP, with a contract, adversarial review, and a quality gate that failed the build twice before
               passing it. The rebuild is public at{' '}
               <a href="https://github.com/brightmeld-org/mortmortgage-rebuilt" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 font-medium underline">
