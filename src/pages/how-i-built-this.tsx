@@ -44,11 +44,11 @@ export default function HowIBuiltThis() {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItSDI0di0yaDEyek0zNiAyNHYySDI0di0yaDEyeiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            One Weekend. One Friend.
+            One Developer. Two Weeks.
             <span className="block text-primary-200">One Full System.</span>
           </h1>
           <p className="text-lg md:text-xl text-primary-100 max-w-2xl mx-auto">
-            A demo of what AI-orchestrated development can do — and what that means for software delivery.
+            A demo of what AI-assisted development can do — and what that means for software delivery.
           </p>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-[60px] overflow-hidden">
@@ -90,12 +90,9 @@ export default function HowIBuiltThis() {
               experiment with a real deliverable.
             </p>
             <p>
-              &ldquo;One friend&rdquo; means exactly that: one human collaborator. We used{' '}
-              <a href="https://brightmeld.com" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 font-medium underline">
-                BrightMeld
-              </a>
-              {' '}as our primary development tool — an AI-orchestrated development platform that coordinates
-              multiple AI agents working in parallel. The constraint was one weekend of effort.
+              What actually happened: one developer, working with Claude Code — Anthropic&apos;s agentic coding
+              tool — running parallel agents on some features. The commit history records 8 working days of
+              building, spread over about two weeks.
             </p>
           </div>
         </section>
@@ -127,41 +124,31 @@ export default function HowIBuiltThis() {
           </div>
         </section>
 
-        {/* Section 4 — Step 2: BrightMeld */}
+        {/* Section 4 — What This Build Started */}
         <section>
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Step 2: The BrightMeld Process</h2>
-          <div className="prose prose-lg text-gray-600 space-y-4 mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Step 2: What This Build Started</h2>
+          <div className="prose prose-lg text-gray-600 space-y-4">
             <p>
+              This build succeeded on its own terms: working software, fast. But getting there exposed what
+              fast-without-process leaves out. The tests passed, yet no independent gate had challenged them.
+              The integrations were mocked, but unverified. There was no contract tying any line of code back
+              to a requirement — and no way to prove the system did what was specified rather than what was
+              convenient.
+            </p>
+            <p>
+              That gap is the origin of{' '}
               <a href="https://brightmeld.com" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 font-medium underline">
                 BrightMeld
               </a>
-              {' '}is an AI-orchestrated development platform. Instead of a single AI assistant answering questions
-              one at a time, BrightMeld runs multiple specialized agents in parallel — each focused on a different
-              part of the system — while maintaining human approval gates throughout.
+              &apos;s contract-governed pipeline. Its first commit came nineteen days after this build began —
+              both git histories are public. That pipeline later rebuilt this same application from a single
+              RFP, with a contract, adversarial review, and a quality gate that failed the build twice before
+              passing it. The rebuild is public at{' '}
+              <a href="https://github.com/brightmeld-org/mortmortgage-rebuilt" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 font-medium underline">
+                mortmortgage-rebuilt
+              </a>
+              .
             </p>
-            <p>
-              The contrast with traditional sequential development is stark: where a team of engineers would
-              typically work through a backlog one feature at a time, BrightMeld&apos;s agents work concurrently
-              across the codebase.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {[
-              { layer: 'Spark', desc: 'Translates the requirements document into detailed technical specifications and task decomposition.' },
-              { layer: 'Forge', desc: 'Seven AI agents working in parallel — frontend, backend, schema, tests, integrations, auth, and deployment.' },
-              { layer: 'Lens', desc: 'Adversarial QA layer: OWASP scanning, coverage scoring, edge-case testing, and regression checks.' },
-              { layer: 'Pulse', desc: 'Real-time transparency dashboard showing agent activity, decisions, and progress across all tracks.' },
-            ].map(({ layer, desc }) => (
-              <div key={layer} className="card p-5">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <span className="text-primary-700 font-bold text-sm">{layer[0]}</span>
-                  </div>
-                  <h3 className="font-semibold text-gray-900">{layer}</h3>
-                </div>
-                <p className="text-sm text-gray-600">{desc}</p>
-              </div>
-            ))}
           </div>
         </section>
 
@@ -169,7 +156,7 @@ export default function HowIBuiltThis() {
         <section>
           <h2 className="text-3xl font-bold text-gray-900 mb-6">What Got Built</h2>
           <p className="text-lg text-gray-600 mb-8">
-            Every item below was delivered in the single weekend sprint and is live in this demo.
+            Every item below was delivered in the initial build and is live in this demo.
           </p>
           <div className="grid sm:grid-cols-2 gap-4">
             {FEATURES.map(({ title, desc }) => (
@@ -210,8 +197,8 @@ export default function HowIBuiltThis() {
             </p>
             <p>
               Without wanting to pile onto the Saas&shy;pocalypse discourse, there&apos;s a genuine argument that the
-              pendulum is swinging back toward bespoke. If AI-orchestrated development can compress a months-long
-              engagement into a weekend sprint, the calculus changes. Better fit, lower ongoing cost, no licensing
+              pendulum is swinging back toward bespoke. If AI-assisted development can compress a months-long
+              engagement into weeks, the calculus changes. Better fit, lower ongoing cost, no licensing
               creep — if done right. The &ldquo;if done right&rdquo; still matters enormously. But the cost of getting
               there just dropped.
             </p>
@@ -296,7 +283,7 @@ export default function HowIBuiltThis() {
               Demo application. All data is synthetic for presentation purposes only.
             </p>
             <a href="https://brightmeld.com" target="_blank" rel="noopener noreferrer" className="text-sm text-primary-400 hover:text-primary-300">
-              Built with BrightMeld
+              A BrightMeld origin story
             </a>
           </div>
         </div>

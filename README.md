@@ -1,5 +1,10 @@
 # MortMortgage Demo
 
+> ### This is Act 1 of a three-act story
+> In February 2026 this mortgage-origination app was built by one developer with Claude Code — 24 tasks and 377 passing tests as recorded at the time, over 8 working days across about two weeks. It was fast, and it worked. It also wasn't *delivered*: no contract, no adversarial review, no independent quality gate.
+>
+> That gap is what started [BrightMeld](https://brightmeld.com)'s contract-governed pipeline — first commit 19 days after this build began — which later rebuilt this same application from a single RFP: **[brightmeld-org/mortmortgage-rebuilt](https://github.com/brightmeld-org/mortmortgage-rebuilt)**. This repo is preserved as the "before" picture.
+
 Demo web-first mortgage application (MVP) for industry demonstration.
 
 ## Overview

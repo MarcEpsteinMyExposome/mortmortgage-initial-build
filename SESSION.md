@@ -5,14 +5,14 @@ This file tracks the current development session progress. Claude updates this f
 ---
 
 ## Last Updated
-**Date**: 2026-02-15
-**Status**: 23 tasks complete
+**Date**: 2026-02-16
+**Status**: 24 tasks complete
 
 ---
 
 ## Current Project Status
 
-### Completed Tasks (22 total)
+### Completed Tasks (24 total)
 | ID | Task | Status |
 |----|------|--------|
 | DM-1 | Full URLA 2020 Schema | DONE |
@@ -37,6 +37,8 @@ This file tracks the current development session progress. Claude updates this f
 | CO-BORROWER-02 | Co-Borrower UI | DONE |
 | MAP-01 | Property Map with Comparables | DONE |
 | UX-02 | Wizard Stepper Fix + UX Polish | DONE |
+| ADMIN-CW-01 | Caseworker Queues & Supervisor Dashboards | DONE |
+| ROLES-01 | Consolidate Roles (3-role system) | DONE |
 
 ### Future Tasks
 | ID | Task | Status |
@@ -52,7 +54,44 @@ This file tracks the current development session progress. Claude updates this f
 
 ---
 
-## Latest Session Work (2026-02-15)
+## Latest Session Work (2026-02-16)
+
+### Vercel Deployment & Seed Data Enrichment
+
+**Status**: In progress — Vercel build pending confirmation
+
+#### What Was Done:
+1. **Pinned Next.js version** — Changed `"next": "*"` to `"next": "^16.1.6"` (also pinned react/react-dom to ^18.3.1). Vercel was resolving `*` to ancient Next.js 7, causing "legacy mode" build failures.
+2. **Created Turso database** — Set up remote SQLite-compatible DB via Turso web GUI. Created 4 tables (User, Application, Assignment, Document) via SQL editor.
+3. **Added `userId` column to Turso** — PR merge (ROLES-01) added `userId`/`CreatedBy` relation to Application model. Need to run `ALTER TABLE "Application" ADD COLUMN "userId" TEXT;` in Turso SQL editor.
+4. **Enriched seed data** — Rewrote `seed-demo.ts` to use `fake-data.ts` helpers for full URLA coverage:
+   - Co-borrowers (25% of applications, 60% share last name as spouse)
+   - Demographics (race, ethnicity, sex — HMDA fields)
+   - Military service (correlated with VA loan type)
+   - Previous addresses (when current residence < 2 years)
+   - Previous employment (when current job started recently)
+   - Additional income sources (~20% — rental, pension, alimony, etc.)
+   - Gift funds (~15% of purchase loans)
+   - Richer assets (2-4 varied types), liabilities (1-4 varied types)
+   - Real estate owned (more likely for refinance borrowers)
+   - Declarations with realistic random distribution
+5. **Merged ROLES-01 PR** — Consolidated from 4 roles to 3 (removed ADMIN). Borrower scoping, caseworker claim workflow, 26 new tests.
+6. **Updated local DB** — Ran `prisma generate` and `prisma db push` for new schema.
+
+#### Pending:
+- **Turso**: Run `ALTER TABLE "Application" ADD COLUMN "userId" TEXT REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;` in Turso SQL editor
+- **Vercel**: Confirm build succeeds with pinned Next.js 16 + all env vars set
+- **Vercel**: After successful deploy, hit "Seed Demo Data" button from supervisor dashboard
+- **Vercel env vars needed**: `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `NEXTAUTH_SECRET`, `NEXTAUTH_URL`, `DATABASE_URL=file:./dev.db`
+
+#### Files Modified This Session:
+- `package.json` — Pinned next, react, react-dom versions
+- `src/pages/api/admin/seed-demo.ts` — Enriched seed data with fake-data helpers
+- Plus 27 files from ROLES-01 PR merge
+
+---
+
+## Previous Session Work (2026-02-15)
 
 ### ROLES-01: Consolidate Roles (Remove ADMIN, Three-Role System)
 **Branch**: `feature/consolidate-roles`
